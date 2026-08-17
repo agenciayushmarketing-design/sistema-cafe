@@ -29,6 +29,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { PageHeader } from "@/components/shared/PageHeader"
+import { ScrollHint } from "@/components/shared/ScrollHint"
 import { StatusBadge } from "@/components/shared/StatusBadge"
 import { formatNumber } from "@/lib/format"
 import { estoque, itensAbaixoMinimo } from "@/data/estoque"
@@ -107,8 +108,8 @@ export default function Insumos() {
       />
 
       {itensAbaixoMinimo.length > 0 && (
-        <div className="mb-5 flex items-center gap-2 rounded-md border border-destructive/30 bg-danger-soft px-4 py-3 text-sm text-destructive">
-          <TriangleAlert className="size-4 shrink-0" />
+        <div className="mb-5 flex items-start gap-2 rounded-md border border-destructive/30 bg-danger-soft px-3 py-3 text-xs leading-relaxed text-destructive sm:px-4 sm:text-sm">
+          <TriangleAlert className="mt-0.5 size-4 shrink-0" />
           <span>
             <span className="font-semibold">
               {itensAbaixoMinimo.length} insumos precisam de reposição:
@@ -119,8 +120,9 @@ export default function Insumos() {
         </div>
       )}
 
-      <Card>
+      <Card className="min-w-0">
         <CardContent className="pt-4">
+          <ScrollHint />
           <Table>
             <TableHeader>
               <TableRow>

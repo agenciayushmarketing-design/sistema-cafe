@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { PageHeader } from "@/components/shared/PageHeader"
+import { ScrollHint } from "@/components/shared/ScrollHint"
 import { StatusBadge } from "@/components/shared/StatusBadge"
 import { formatBRL, formatDate, formatNumber } from "@/lib/format"
 import { vendas, sacasVendidas, receitaRealizada, precoMedioVenda } from "@/data/vendas"
@@ -22,7 +23,7 @@ export default function Vendas() {
         subtitle="Negociações de café da safra 2025/2026"
       />
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {[
           { label: "Sacas vendidas", value: `${formatNumber(sacasVendidas)} sc` },
           { label: "Preço médio", value: `${formatBRL(precoMedioVenda)}/sc` },
@@ -30,15 +31,15 @@ export default function Vendas() {
           { label: "Sacas remanescentes", value: `${formatNumber(totalEstoqueCafe)} sc` },
         ].map((item) => (
           <Card key={item.label}>
-            <CardContent className="p-4">
+            <CardContent className="p-3 sm:p-4">
               <p className="text-xs text-muted-foreground">{item.label}</p>
-              <p className="mt-1 text-lg font-semibold">{item.value}</p>
+              <p className="mt-1 text-base font-semibold sm:text-lg">{item.value}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <Card className="mt-6">
+      <Card className="mt-5 min-w-0 sm:mt-6">
         <CardHeader className="pb-2">
           <CardTitle className="text-base">Negociações</CardTitle>
           <p className="text-xs text-muted-foreground">
@@ -46,6 +47,7 @@ export default function Vendas() {
           </p>
         </CardHeader>
         <CardContent>
+          <ScrollHint />
           <Table>
             <TableHeader>
               <TableRow>

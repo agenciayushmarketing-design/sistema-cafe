@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { PageHeader } from "@/components/shared/PageHeader"
+import { ScrollHint } from "@/components/shared/ScrollHint"
 import { StatusBadge } from "@/components/shared/StatusBadge"
 import { formatBRL, formatDate, formatNumber } from "@/lib/format"
 import {
@@ -35,7 +36,7 @@ export default function Lavoura() {
         action={<Badge className="border-transparent bg-success-soft text-success">Safra encerrando</Badge>}
       />
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {[
           { label: "Área em produção", value: `${formatNumber(lavoura.areaHa)} ha` },
           { label: "Pés de café", value: formatNumber(lavoura.pes) },
@@ -47,29 +48,31 @@ export default function Lavoura() {
           { label: "Custo por saca", value: formatBRL(CUSTO_POR_SACA) },
         ].map((item) => (
           <Card key={item.label}>
-            <CardContent className="p-4">
+            <CardContent className="p-3 sm:p-4">
               <p className="text-xs text-muted-foreground">{item.label}</p>
-              <p className="mt-1 text-lg font-semibold">{item.value}</p>
+              <p className="mt-1 text-base font-semibold sm:text-lg">{item.value}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <Card className="mt-4 border-primary/40">
-        <CardContent className="flex flex-wrap items-center justify-between gap-4 p-5">
-          <div>
+      <Card className="mt-4 min-w-0 border-primary/40">
+        <CardContent className="flex flex-wrap items-center justify-between gap-3 p-4 sm:gap-4 sm:p-5">
+          <div className="min-w-0">
             <p className="text-sm font-medium">Margem estimada da safra</p>
             <p className="text-xs text-muted-foreground">
               Receita realizada ({formatNumber(sacasVendidas)} sc vendidas) + estoque de{" "}
               {formatNumber(totalEstoqueCafe)} sc a valor de cotação − custo total
             </p>
           </div>
-          <p className="text-2xl font-semibold text-success">{formatBRL(margemEstimada)}</p>
+          <p className="text-xl font-semibold text-success sm:text-2xl">
+            {formatBRL(margemEstimada)}
+          </p>
         </CardContent>
       </Card>
 
-      <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
-        <Card>
+      <div className="mt-5 grid grid-cols-1 gap-5 sm:mt-6 sm:gap-6 xl:grid-cols-2">
+        <Card className="min-w-0">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">Histórico de aplicações</CardTitle>
             <p className="text-xs text-muted-foreground">
@@ -77,6 +80,7 @@ export default function Lavoura() {
             </p>
           </CardHeader>
           <CardContent>
+            <ScrollHint />
             <Table>
               <TableHeader>
                 <TableRow>
@@ -112,6 +116,7 @@ export default function Lavoura() {
             <p className="text-xs text-muted-foreground">Sacas beneficiadas por semana · jun–ago/2026</p>
           </CardHeader>
           <CardContent>
+            <ScrollHint />
             <Table>
               <TableHeader>
                 <TableRow>

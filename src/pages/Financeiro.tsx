@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { PageHeader } from "@/components/shared/PageHeader"
+import { ScrollHint } from "@/components/shared/ScrollHint"
 import { StatCard } from "@/components/shared/StatCard"
 import { StatusBadge } from "@/components/shared/StatusBadge"
 import { formatBRL, formatDate, formatNumber } from "@/lib/format"
@@ -43,7 +44,7 @@ export default function Financeiro() {
         subtitle={`A pagar em aberto: ${formatBRL(totalPagarAberto)} · custeio único da lavoura de café (sem separação por talhão)`}
       />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
         <StatCard
           title="Receita da safra"
           value={formatBRL(receitaRealizada)}
@@ -72,16 +73,22 @@ export default function Financeiro() {
         />
       </div>
 
-      <div className="mt-6">
+      <div className="mt-5 sm:mt-6">
         <Tabs defaultValue="pagar">
-          <TabsList>
-            <TabsTrigger value="pagar">Contas a Pagar</TabsTrigger>
-            <TabsTrigger value="receber">Contas a Receber</TabsTrigger>
-            <TabsTrigger value="custeio">Custeio por Categoria</TabsTrigger>
+          <TabsList className="w-full max-w-full justify-start overflow-x-auto">
+            <TabsTrigger value="pagar" className="shrink-0">
+              Contas a Pagar
+            </TabsTrigger>
+            <TabsTrigger value="receber" className="shrink-0">
+              Contas a Receber
+            </TabsTrigger>
+            <TabsTrigger value="custeio" className="shrink-0">
+              Custeio por Categoria
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="pagar">
-            <Card>
+            <Card className="min-w-0">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base">Contas a Pagar</CardTitle>
                 <p className="text-xs text-muted-foreground">
@@ -90,6 +97,7 @@ export default function Financeiro() {
                 </p>
               </CardHeader>
               <CardContent>
+                <ScrollHint />
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -121,7 +129,7 @@ export default function Financeiro() {
           </TabsContent>
 
           <TabsContent value="receber">
-            <Card>
+            <Card className="min-w-0">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base">Contas a Receber</CardTitle>
                 <p className="text-xs text-muted-foreground">
@@ -135,6 +143,7 @@ export default function Financeiro() {
                 </p>
               </CardHeader>
               <CardContent>
+                <ScrollHint />
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -164,7 +173,7 @@ export default function Financeiro() {
           </TabsContent>
 
           <TabsContent value="custeio">
-            <Card>
+            <Card className="min-w-0">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base">Custeio por Categoria</CardTitle>
                 <p className="text-xs text-muted-foreground">
@@ -184,6 +193,7 @@ export default function Financeiro() {
                     {formatBRL(totalBenfeitoriasLancadas)}.
                   </span>
                 </div>
+                <ScrollHint />
                 <Table>
                   <TableHeader>
                     <TableRow>

@@ -30,6 +30,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { PageHeader } from "@/components/shared/PageHeader"
+import { ScrollHint } from "@/components/shared/ScrollHint"
 import { formatDate, formatNumber } from "@/lib/format"
 import { lancamentosColheita, sacasUltimosDias, LITROS_POR_SACA } from "@/data/colheitas"
 import { funcionarios } from "@/data/equipe"
@@ -122,7 +123,7 @@ export default function Colheita() {
         action={<NovoLancamentoDialog />}
       />
 
-      <Card>
+      <Card className="min-w-0">
         <CardHeader className="pb-2">
           <CardTitle className="text-base">Lançamentos diários</CardTitle>
           <p className="text-xs text-muted-foreground">
@@ -131,6 +132,7 @@ export default function Colheita() {
           </p>
         </CardHeader>
         <CardContent>
+          <ScrollHint />
           <Table>
             <TableHeader>
               <TableRow>

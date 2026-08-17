@@ -10,6 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { PageHeader } from "@/components/shared/PageHeader"
+import { ScrollHint } from "@/components/shared/ScrollHint"
 import { StatusBadge } from "@/components/shared/StatusBadge"
 import { formatBRL, formatDate, formatNumber } from "@/lib/format"
 import {
@@ -29,8 +30,8 @@ export default function EstoqueCafe() {
         subtitle={`${formatNumber(totalEstoqueCafe)} sacas beneficiadas disponíveis · valor potencial ${formatBRL(totalEstoqueCafe * COTACAO_HOJE)} à cotação de hoje`}
       />
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <Card>
+      <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-3">
+        <Card className="min-w-0">
           <CardContent className="flex items-start justify-between p-5">
             <div>
               <p className="text-sm text-muted-foreground">Estoque na fazenda (tulha)</p>
@@ -42,7 +43,7 @@ export default function EstoqueCafe() {
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="min-w-0">
           <CardContent className="flex items-start justify-between p-5">
             <div>
               <p className="text-sm text-muted-foreground">Depositado em armazém</p>
@@ -69,13 +70,14 @@ export default function EstoqueCafe() {
         </Card>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
+      <div className="mt-5 grid grid-cols-1 gap-5 sm:mt-6 sm:gap-6 xl:grid-cols-2">
         <Card className="h-fit">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">Saldo por padrão / classificação</CardTitle>
             <p className="text-xs text-muted-foreground">Classificação por bebida e peneira</p>
           </CardHeader>
           <CardContent>
+            <ScrollHint />
             <Table>
               <TableHeader>
                 <TableRow>
@@ -112,7 +114,7 @@ export default function EstoqueCafe() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="min-w-0">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">Movimentações</CardTitle>
             <p className="text-xs text-muted-foreground">
@@ -120,6 +122,7 @@ export default function EstoqueCafe() {
             </p>
           </CardHeader>
           <CardContent>
+            <ScrollHint />
             <Table>
               <TableHeader>
                 <TableRow>

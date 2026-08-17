@@ -21,6 +21,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { PageHeader } from "@/components/shared/PageHeader"
+import { ScrollHint } from "@/components/shared/ScrollHint"
 import { StatusBadge } from "@/components/shared/StatusBadge"
 import { formatBRL, formatDate } from "@/lib/format"
 import {
@@ -61,7 +62,7 @@ function ReciboDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="rounded-md border bg-white p-5 text-sm leading-relaxed">
+        <div className="max-h-[60vh] overflow-y-auto rounded-md border bg-white p-4 text-sm leading-relaxed sm:max-h-none sm:p-5">
           <p className="text-center text-base font-semibold">{FAZENDA}</p>
           <p className="text-center text-xs text-muted-foreground">
             Recibo de pagamento de diárias — agosto/2026
@@ -76,7 +77,8 @@ function ReciboDialog({
             <span className="text-muted-foreground">Função:</span> {funcionario.funcao}
           </p>
           <Separator className="my-3" />
-          <table className="w-full text-xs">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[260px] text-xs">
             <thead>
               <tr className="text-left text-muted-foreground">
                 <th className="pb-1 font-medium">Data</th>
@@ -97,6 +99,7 @@ function ReciboDialog({
               ))}
             </tbody>
           </table>
+          </div>
           <Separator className="my-3" />
           <div className="space-y-1 text-sm">
             <p className="flex justify-between">
@@ -143,8 +146,8 @@ export default function Equipe() {
         subtitle={`${fixos} funcionários fixos + ${safristas} safristas · ${diarias.length} diárias em agosto (${formatBRL(totalDiarias)}) · vales no mês: ${formatBRL(totalVales)}`}
       />
 
-      <div className="grid grid-cols-1 gap-6 2xl:grid-cols-3">
-        <Card className="h-fit">
+      <div className="grid grid-cols-1 gap-5 sm:gap-6 2xl:grid-cols-3">
+        <Card className="h-fit min-w-0">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">Funcionários</CardTitle>
             <p className="text-xs text-muted-foreground">
@@ -156,8 +159,8 @@ export default function Equipe() {
               {funcionarios.map((f) => {
                 const vales = valesDoFuncionario(f.id)
                 return (
-                  <li key={f.id} className="flex items-center justify-between gap-2 py-2.5">
-                    <div>
+                  <li key={f.id} className="flex items-start justify-between gap-2 py-2.5">
+                    <div className="min-w-0">
                       <p className="text-sm font-medium">{f.nome}</p>
                       <p className="text-xs text-muted-foreground">
                         {f.funcao} · desde {formatDate(f.admissao)}
@@ -169,12 +172,13 @@ export default function Equipe() {
                         </span>
                       </p>
                     </div>
-                    <div className="flex flex-col items-end gap-1.5">
+                    <div className="flex shrink-0 flex-col items-end gap-1.5">
                       <StatusBadge status={f.tipo} />
                       {f.tipo === "Safrista" && (
                         <Button
                           variant="outline"
                           size="xs"
+                          className="h-8 px-2.5 sm:h-6 sm:px-2"
                           onClick={() => setReciboDe(f)}
                         >
                           <ReceiptText className="size-3" /> Gerar recibo
@@ -188,7 +192,7 @@ export default function Equipe() {
           </CardContent>
         </Card>
 
-        <Card className="2xl:col-span-2">
+        <Card className="min-w-0 2xl:col-span-2">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">Apontamento de diárias — agosto/2026</CardTitle>
             <p className="text-xs text-muted-foreground">
@@ -196,6 +200,7 @@ export default function Equipe() {
             </p>
           </CardHeader>
           <CardContent>
+            <ScrollHint />
             <Table>
               <TableHeader>
                 <TableRow>

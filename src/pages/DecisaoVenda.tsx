@@ -43,8 +43,8 @@ export default function DecisaoVenda() {
         subtitle="Cotação, ponto de equilíbrio e simulador de venda do estoque"
       />
 
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-        <Card>
+      <div className="grid grid-cols-1 gap-5 sm:gap-6 xl:grid-cols-2">
+        <Card className="min-w-0">
           <CardHeader className="pb-2">
             <CardTitle className="flex items-center gap-2 text-base">
               <TrendingUp className="size-4 text-primary" /> Cotação do café arábica
@@ -53,16 +53,16 @@ export default function DecisaoVenda() {
               Indicador CEPEA/ESALQ tipo 6 · últimos 60 dias (mock)
             </p>
           </CardHeader>
-          <CardContent>
-            <div className="mb-3 flex flex-wrap items-end gap-6">
+          <CardContent className="px-3 sm:px-6">
+            <div className="mb-3 flex flex-wrap items-end gap-4 sm:gap-6">
               <div>
-                <p className="text-3xl font-semibold tracking-tight">
+                <p className="text-2xl font-semibold tracking-tight sm:text-3xl">
                   {formatBRL(COTACAO_HOJE)}
                   <span className="text-base font-normal text-muted-foreground">/saca</span>
                 </p>
                 <p className="text-xs text-muted-foreground">Hoje, 13/08/2026</p>
               </div>
-              <div className="flex items-center gap-2 rounded-md bg-accent px-3 py-2">
+              <div className="flex min-w-0 items-center gap-2 rounded-md bg-accent px-3 py-2">
                 <Scale className="size-4 text-accent-foreground" />
                 <div>
                   <p className="text-xs text-muted-foreground">Ponto de equilíbrio (custo/saca)</p>
@@ -157,7 +157,7 @@ export default function DecisaoVenda() {
               </p>
             )}
 
-            <div className="mt-4 grid grid-cols-3 gap-3">
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
               <div className="rounded-md border bg-muted/40 p-3">
                 <p className="text-xs text-muted-foreground">Receita</p>
                 <p className="mt-0.5 text-lg font-semibold">{formatBRL(receita)}</p>
@@ -189,7 +189,7 @@ export default function DecisaoVenda() {
 
             <div className="rounded-md bg-secondary p-3 text-sm">
               <p className="font-medium text-secondary-foreground">Comparativo com o já vendido</p>
-              <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
+              <div className="mt-2 grid grid-cols-1 gap-3 text-xs sm:grid-cols-2 sm:gap-2">
                 <div>
                   <p className="text-muted-foreground">Vendido até agora</p>
                   <p className="mt-0.5 font-semibold text-foreground">

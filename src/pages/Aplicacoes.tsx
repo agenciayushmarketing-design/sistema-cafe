@@ -29,6 +29,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { PageHeader } from "@/components/shared/PageHeader"
+import { ScrollHint } from "@/components/shared/ScrollHint"
 import { StatusBadge } from "@/components/shared/StatusBadge"
 import { formatDate, formatNumber } from "@/lib/format"
 import { aplicacoes } from "@/data/aplicacoes"
@@ -109,8 +110,9 @@ export default function Aplicacoes() {
         action={<NovaAplicacaoDialog />}
       />
 
-      <Card>
+      <Card className="min-w-0">
         <CardContent className="pt-4">
+          <ScrollHint />
           <Table>
             <TableHeader>
               <TableRow>
